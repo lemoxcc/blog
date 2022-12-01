@@ -1,7 +1,13 @@
 ---
-title: about me
+title: about
 date: 2022-11-28 22:17:21
-tags:
+update: 2022-12-01 20:06:00
+tags: else
+categories: else
+description: 'Something about me'
+keywords: 'About,fanttasy,blog'
+top_img: /assert/index-image.png
+cover: false
 ---
 
 - 👋 Hi, I’m @fanttasy
