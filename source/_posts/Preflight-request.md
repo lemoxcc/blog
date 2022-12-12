@@ -5,7 +5,8 @@ update: 2022-12-02 17:18:24
 tags:
   - HTTP
   - 浏览器
-categories: HTTP
+categories:
+  - HTTP
 description: 'Preflight request'
 keywords: 'Preflight request,预检请求,HTTP'
 top_img: /assert/index-image.png
