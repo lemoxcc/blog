@@ -105,3 +105,12 @@ theme: butterfly
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+
+# custom plugins
+
+# hexo-generator-search
+search:
+  path: search.xml
+  field: post
+  content: true
