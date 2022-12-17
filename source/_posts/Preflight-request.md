@@ -13,7 +13,7 @@ top_img: /assert/index-image.png
 cover: false
 ---
 
-## 预检请求
+## <center>Preflight request（预检请求）</center>
 
 #### 1. 什么是预检请求？
 >一个`CORS`预检请求是用于检查服务器是否支持`CORS`（跨域资源共享），由浏览器自动通过`OPTIONS`方法发起（**非简单请求**才会发起预检请求）。当预检请求完成，服务器确认允许后，才发起实际的HTTP请求。
