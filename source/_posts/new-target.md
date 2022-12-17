@@ -12,7 +12,7 @@ top_img: /assert/index-image.png
 cover: false
 ---
 
-## new.target
+## <center>new.target</center>
 
 #### 1. 定义
 > `new.target`属性（ES6引入）允许你检测函数或构造方法是否通过`new`运算符进行调用。通过new运算符被初始化的函数或构造方法时，`new.target`返回一个指向构造方法或函数的引用，在普通的函数调用中，`new.target`返回`undefined`
