@@ -1,7 +1,7 @@
 ---
 title: JavaScript Garbage Collecation
-date: 2022-12-17 19:31:44
-update: 2022-12-17 19:31:44
+date: 2021-12-17 19:31:44
+update: 2021-12-17 19:31:44
 tags:
   - JavaScript
 categories:
