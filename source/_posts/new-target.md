@@ -1,7 +1,7 @@
 ---
 title: new.target
-date: 2022-12-12 15:47:34
-update: 2022-12-12 15:47:34
+date: 2021-12-12 15:47:34
+update: 2021-12-12 15:47:34
 tags:
   - JavaScript
 categories:

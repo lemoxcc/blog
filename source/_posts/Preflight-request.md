@@ -1,7 +1,7 @@
 ---
 title: Preflight request
-date: 2022-12-02 17:18:24
-update: 2022-12-02 17:18:24
+date: 2021-12-02 17:18:24
+update: 2021-12-02 17:18:24
 tags:
   - HTTP
   - 浏览器
