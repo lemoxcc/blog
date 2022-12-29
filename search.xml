@@ -29,6 +29,31 @@
     
     
     <entry>
+      <title>Index Signature</title>
+      <link href="/blog//Index-Signature/"/>
+      <url>/blog//Index-Signature/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Index-Signature"><a href="#Index-Signature" class="headerlink" title="Index Signature"></a><center>Index Signature</center></h2><h4 id="1-序言"><a href="#1-序言" class="headerlink" title="1. 序言"></a>1. 序言</h4><p>  你有两个对象，分别描述了两个工作人员的工资：<br>  <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> salary1 = &#123;</span><br><span class="line">  <span class="attr">baseSalary</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="attr">yearlyBonus</span>: <span class="number">20</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> salary2 = &#123;</span><br><span class="line">  <span class="attr">contractSalary</span>: <span class="number">11</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>  之后，你想实现一个函数，根据工作人员的工资信息得到总薪资</p>  <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">totalSalary</span>(<span class="params">salaryObject: ???</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> total = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> name <span class="keyword">in</span> salaryObject) &#123;</span><br><span class="line">    total += salaryObject[name];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> total;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">totalSalary</span>(salary1); <span class="comment">// 30</span></span><br><span class="line"><span class="title function_">totalSalary</span>(salary2); <span class="comment">// 11</span></span><br></pre></td></tr></table></figure><p>  看起来函数似乎可以正常工作，<code>salaryObject</code>被<code>typescript</code>推导为any，这时候我们可以传入任何对象。当我们传入的对象值的类型不为<code>number</code>时，此函数将会在运行时报错（比如：<code>&#123; baseSalary: true &#125;</code>）</p><p>  这个时候应该如果定义<code>totalSalary</code>函数的参数<code>totalSalary</code>的类型注解呢？答案是<code>Index Signature</code>（索引签名），接下来我们来看看如何在<code>Typescript</code>中使用索引签名，以及何时需要它</p><h4 id="2-什么是索引签名？"><a href="#2-什么是索引签名？" class="headerlink" title="2. 什么是索引签名？"></a>2. 什么是索引签名？</h4><p>  当你不确定对象属性的名称，只知道属性和值的类型，这时可以使用索引签名来描述。</p><p>  比如<code>salaryObject</code>，我们可以确定属性的类型（<code>string</code>）、值的类型（<code>number</code>），但我们不知道具体的属性名。便可以使用索引签名：</p>  <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> salaryType = &#123;</span><br><span class="line">  [<span class="attr">key</span>: <span class="built_in">string</span>]: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>  此类型描述了一个以字符串类型作为属性，数字类型作为值的对象。当我们传入非<code>number</code>类型的属性值对象时，<code>typescript</code>将会提示错误</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Typescript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Typescript </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>new.target</title>
       <link href="/blog//new-target/"/>
       <url>/blog//new-target/</url>
