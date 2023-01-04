@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>package.json</title>
+      <link href="/blog//package-json/"/>
+      <url>/blog//package-json/</url>
+      
+        <content type="html"><![CDATA[<h2 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a><center>package.json</center></h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> Node </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Node </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>JavaScript Garbage Collecation</title>
       <link href="/blog//JavaScript-Garbage-Collecation/"/>
       <url>/blog//JavaScript-Garbage-Collecation/</url>
