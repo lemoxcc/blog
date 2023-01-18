@@ -4,10 +4,11 @@ date: 2021-02-16 15:23:41
 update: 2021-6-24 15:47:34
 tags:
   - JavaScript
+  - ES6
 categories:
   - JavaScript
 description: 'JavaScript Symbol'
-keywords: 'JavaScript,Symbol,基本类型'
+keywords: 'JavaScript,Symbol,ES6,基本类型'
 top_img: /assert/index-image.png
 cover: false
 ---
