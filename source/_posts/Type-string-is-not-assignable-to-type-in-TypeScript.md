@@ -6,7 +6,7 @@ tags:
   - Typescript
 categories:
   - Typescript
-description: 'Type 'string' is not assignable to type in Typescript'
+description: "Type 'string' is not assignable to type in Typescript"
 keywords: 'Typescript,const assertion,type assertion'
 top_img: /assert/index-image.png
 cover: false
