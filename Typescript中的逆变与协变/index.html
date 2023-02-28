@@ -1,0 +1,189 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Typescript中的逆变与协变 | fanttasy</title><meta name="author" content="fanttasy"><meta name="copyright" content="fanttasy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Typescript中的逆变与协变">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Typescript中的逆变与协变">
+<meta property="og:url" content="https://fanttasy.github.io/blog/Typescript%E4%B8%AD%E7%9A%84%E9%80%86%E5%8F%98%E4%B8%8E%E5%8D%8F%E5%8F%98/index.html">
+<meta property="og:site_name" content="fanttasy">
+<meta property="og:description" content="Typescript中的逆变与协变">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fanttasy.github.io/blog/assert/avatar.png">
+<meta property="article:published_time" content="2022-04-16T12:48:19.000Z">
+<meta property="article:modified_time" content="2023-02-28T08:39:16.724Z">
+<meta property="article:author" content="fanttasy">
+<meta property="article:tag" content="Typescript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fanttasy.github.io/blog/assert/avatar.png"><link rel="shortcut icon" href="/blog/assert/favicon.ico"><link rel="canonical" href="https://fanttasy.github.io/blog/Typescript%E4%B8%AD%E7%9A%84%E9%80%86%E5%8F%98%E4%B8%8E%E5%8D%8F%E5%8F%98/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"/blog/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Typescript中的逆变与协变',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-28 16:39:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/blog/assert/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/blog/assert/index-image.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/blog/">fanttasy</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Typescript中的逆变与协变</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-04-16T12:48:19.000Z" title="发表于 2022-04-16 20:48:19">2022-04-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-28T08:39:16.724Z" title="更新于 2023-02-28 16:39:16">2023-02-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/blog/categories/Typescript/">Typescript</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Typescript中的逆变与协变"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="Typescript中的逆变与协变"><a href="#Typescript中的逆变与协变" class="headerlink" title="Typescript中的逆变与协变"></a><center>Typescript中的逆变与协变</center></h2><p>  TypeScript 是一门静态类型语言，具有丰富的类型系统特性，其中逆变和协变是两个重要的概念。它们在 TypeScript 中用于描述函数类型、泛型和类继承等场景中的类型转换关系</p>
+<h4 id="什么是逆变和协变"><a href="#什么是逆变和协变" class="headerlink" title="什么是逆变和协变"></a>什么是逆变和协变</h4><p>  在 TypeScript 中，逆变和协变是两个类型转换的方向。逆变用于从更具体的类型转换为更一般的类型，而协变则用于从更一般的类型转换为更具体的类型</p>
+<p>  换句话说，逆变和协变都是用来描述类型之间的包含关系。逆变意味着一个更具体的类型可以替代一个更一般的类型，而协变意味着一个更一般的类型可以替代一个更具体的类型</p>
+<p>  例如，我们有两个类型 A 和 B，如果 A 是 B 的子类型，那么 A 就是更具体的类型，B 就是更一般的类型。逆变和协变分别描述了从 A 到 B 和从 B 到 A 的类型转换关系</p>
+<h4 id="TypeScript中的逆变"><a href="#TypeScript中的逆变" class="headerlink" title="TypeScript中的逆变"></a>TypeScript中的逆变</h4><p>  在 TypeScript 中，逆变通常发生在函数参数的类型转换中。当函数参数的类型需要比函数签名中声明的类型更具体时，就需要使用逆变</p>
+<p>  例如，我们有一个函数 f，它接收一个类型为 B 的参数，并返回一个类型为 A 的结果。如果我们要将这个函数赋值给一个变量 g，并且这个变量需要接收一个类型为 A 的参数，那么我们需要使用逆变。我们可以将 f 函数的参数类型从 B 转换为 A 的超类型，以满足变量 g 的要求</p>
+  <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> A &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> B <span class="keyword">extends</span> A &#123;</span><br><span class="line">  <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">f</span>(<span class="params">b: B</span>): A &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123; <span class="attr">name</span>: b.<span class="property">name</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">g</span>: <span class="function">(<span class="params">a: A</span>) =&gt;</span> A = f <span class="comment">// 使用逆变，将 B 转换为 A 的超类型</span></span><br></pre></td></tr></table></figure>
+
+<p>  在上面的代码中，我们定义了两个接口 A 和 B，其中 B 继承自 A。函数 f 接收一个类型为 B 的参数，并返回一个类型为 A 的结果。我们将这个函数赋值给变量 g，并且需要将 B 类型的参数转换为 A 类型，以满足 g 变量的类型要求</p>
+<h4 id="TypeScript中的协变"><a href="#TypeScript中的协变" class="headerlink" title="TypeScript中的协变"></a>TypeScript中的协变</h4><p>  协变通常发生在函数返回值的类型转换中。当函数返回值的类型需要比函数签名中声明的类型更具体时，就需要使用协变</p>
+<p>  例如，我们有一个函数 f，它返回一个类型为 A 的结果，但实际上它返回的是一个类型为 B 的实例，其中 B 是 A 的子类型。如果我们要将这个函数赋值给一个变量 g，并且这个变量需要返回一个类型为 B 的结果，那么我们需要使用协变。我们可以将 f 函数的返回值类型从 A 转换为 B 的子类型，以满足变量 g 的要求</p>
+  <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> A &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> B <span class="keyword">extends</span> A &#123;</span><br><span class="line">  <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">f</span>(<span class="params"></span>): A &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123; <span class="attr">name</span>: <span class="string">&quot;foo&quot;</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">g</span>: <span class="function">() =&gt;</span> B = f <span class="comment">// 使用协变，将 A 转换为 B 的子类型</span></span><br></pre></td></tr></table></figure>
+<p>  在上面的代码中，我们定义了两个接口 A 和 B，其中 B 继承自 A。函数 f 返回一个类型为 A 的结果，实际上它返回的是一个类型为 B 的实例。我们将这个函数赋值给变量 g，并且需要将返回值类型从 A 转换为 B 的子类型，以满足 g 变量的类型要求</p>
+<h4 id="TypeScript中的泛型逆变和协变"><a href="#TypeScript中的泛型逆变和协变" class="headerlink" title="TypeScript中的泛型逆变和协变"></a>TypeScript中的泛型逆变和协变</h4><p>  在 TypeScript 中，逆变和协变也可以应用于泛型类型参数。当一个泛型类型参数需要比其声明的类型更具体时，就需要使用逆变；当一个泛型类型参数需要比其声明的类型更一般时，就需要使用协变</p>
+<p>  例如，我们有一个泛型函数 f，它接收一个类型为 <code>Array&lt;B&gt;</code> 的数组，并返回一个类型为 <code>Array&lt;A&gt;</code> 的数组。如果我们要将这个函数赋值给一个变量 g，并且这个变量需要接收一个类型为 <code>Array&lt;A&gt;</code> 的数组，那么我们需要使用逆变。我们可以将泛型类型参数 T 的类型从 <code>Array&lt;B&gt;</code> 转换为 <code>Array&lt;A&gt;</code> 的超类型，以满足变量 g 的要求</p>
+  <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> A &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> B <span class="keyword">extends</span> A &#123;</span><br><span class="line">  <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> f&lt;T <span class="keyword">extends</span> B&gt;(<span class="attr">arr</span>: <span class="title class_">Array</span>&lt;T&gt;): <span class="title class_">Array</span>&lt;A&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> arr.<span class="title function_">map</span>(<span class="function"><span class="params">item</span> =&gt;</span> (&#123; <span class="attr">name</span>: item.<span class="property">name</span> &#125;))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">g</span>: &lt;T <span class="keyword">extends</span> A&gt;<span class="function">(<span class="params">arr: <span class="built_in">Array</span>&lt;T&gt;</span>) =&gt;</span> <span class="title class_">Array</span>&lt;A&gt; = f <span class="comment">// 使用逆变，将 Array&lt;B&gt; 转换为 Array&lt;A&gt; 的超类型</span></span><br></pre></td></tr></table></figure>
+<p>  在上面的代码中，我们定义了两个接口 A 和 B，其中 B 继承自 A。泛型函数 f 接收一个类型为 <code>Array&lt;B&gt;</code> 的数组，并返回一个类型为 <code>Array&lt;A&gt;</code> 的数组。我们将这个函数赋值给变量 g，并且需要将泛型类型参数 T 的类型从 <code>Array&lt;B&gt;</code> 转换为 <code>Array&lt;A&gt;</code> 的超类型，以满足变量 g 的类型要求</p>
+<p>  另外，需要注意的是，在 TypeScript 中，函数参数和返回值是可以同时具有逆变和协变的</p>
+<p>  例如，我们有一个函数类型 Func，它接收一个类型为 <code>Array&lt;A&gt;</code> 的数组，并返回一个类型为 <code>Array&lt;B&gt;</code> 的数组。如果我们要将这个函数类型赋值给一个变量 f，并且这个变量需要接收一个类型为 <code>Array&lt;B&gt;</code> 的数组，并返回一个类型为 <code>Array&lt;A&gt;</code> 的数组，那么我们需要同时使用逆变和协变</p>
+  <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> A &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> B <span class="keyword">extends</span> A &#123;</span><br><span class="line">  <span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Func</span> = <span class="function">(<span class="params">arr: <span class="built_in">Array</span>&lt;A&gt;</span>) =&gt;</span> <span class="title class_">Array</span>&lt;B&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">f</span>: <span class="function">(<span class="params">arr: <span class="built_in">Array</span>&lt;B&gt;</span>) =&gt;</span> <span class="title class_">Array</span>&lt;A&gt; = (<span class="attr">arr</span>: <span class="title class_">Array</span>&lt;B&gt;): <span class="title class_">Array</span>&lt;A&gt; =&gt;</span><br><span class="line">  arr.<span class="title function_">map</span>(<span class="function"><span class="params">item</span> =&gt;</span> (&#123; <span class="attr">name</span>: item.<span class="property">name</span> &#125;))</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">g</span>: <span class="title class_">Func</span> = f <span class="comment">// 同时使用逆变和协变，将参数类型从 Array&lt;B&gt; 转换为 Array&lt;A&gt;，将返回值类型从 Array&lt;A&gt; 转换为 Array&lt;B&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>  在上面的代码中，我们定义了两个接口 A 和 B，其中 B 继承自 A。函数类型 Func 接收一个类型为 <code>Array&lt;A&gt;</code> 的数组，并返回一个类型为 <code>Array&lt;B&gt;</code> 的数组。我们将函数 f 赋值给变量 g，并且需要同时使用逆变和协变，以满足变量 g 的类型要求</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>  在 TypeScript 中，逆变和协变是非常有用的类型系统特性。它们可以帮助我们更好地理解和设计函数和类型。逆变和协变的区别在于，逆变是指一个类型可以被替换为其超类型，而协变是指一个类型可以被替换为其子类型。在 TypeScript 中，逆变和协变可以应用于函数参数类型、函数返回值类型和泛型类型参数</p>
+<p>  使用逆变和协变可以帮助我们编写更灵活、更通用的代码，同时也可以帮助我们更好地理解和设计接口和类型。在使用逆变和协变时，我们需要注意类型安全性和代码的可读性，以避免出现潜在的错误和困惑</p>
+<p>  希望这篇博客能够帮助你更好地理解 TypeScript 中的逆变和协变，并在实际开发中应用它们</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/fanttasy">fanttasy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://fanttasy.github.io/blog/Typescript%E4%B8%AD%E7%9A%84%E9%80%86%E5%8F%98%E4%B8%8E%E5%8D%8F%E5%8F%98/">https://fanttasy.github.io/blog/Typescript%E4%B8%AD%E7%9A%84%E9%80%86%E5%8F%98%E4%B8%8E%E5%8D%8F%E5%8F%98/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://fanttasy.github.io/blog" target="_blank">fanttasy</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/Typescript/">Typescript</a></div><div class="post_share"><div class="social-share" data-image="/blog/assert/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/Type-string-is-not-assignable-to-type-in-TypeScript/"><img class="prev-cover" src="/blog/assert/index-image.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Type 'string' is not assignable to type in TypeScript</div></div></a></div><div class="next-post pull-right"><a href="/blog/Proxy/"><img class="next-cover" src="/blog/assert/index-image.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Proxy</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/blog/Index-Signature/" title="Index Signature"><img class="cover" src="/blog/assert/index-image.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-12-12</div><div class="title">Index Signature</div></div></a></div><div><a href="/blog/Surrogate-Pair/" title="Surrogate Pair"><img class="cover" src="/blog/assert/index-image.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-28</div><div class="title">Surrogate Pair</div></div></a></div><div><a href="/blog/Type-string-is-not-assignable-to-type-in-TypeScript/" title="Type &#39;string&#39; is not assignable to type in TypeScript"><img class="cover" src="/blog/assert/index-image.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-23</div><div class="title">Type &#39;string&#39; is not assignable to type in TypeScript</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/blog/assert/avatar.png" onerror="this.onerror=null;this.src='/blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">fanttasy</div><div class="author-info__description">A blog about fanttasy</div></div><div class="card-info-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/fanttasy"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/fanttasy" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:470618507@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://space.bilibili.com/66897733" target="_blank" title="bilibili"><i class="fab fa-bilibili"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Typescript%E4%B8%AD%E7%9A%84%E9%80%86%E5%8F%98%E4%B8%8E%E5%8D%8F%E5%8F%98"><span class="toc-number">1.</span> <span class="toc-text">Typescript中的逆变与协变</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%80%86%E5%8F%98%E5%92%8C%E5%8D%8F%E5%8F%98"><span class="toc-number">1.0.1.</span> <span class="toc-text">什么是逆变和协变</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TypeScript%E4%B8%AD%E7%9A%84%E9%80%86%E5%8F%98"><span class="toc-number">1.0.2.</span> <span class="toc-text">TypeScript中的逆变</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TypeScript%E4%B8%AD%E7%9A%84%E5%8D%8F%E5%8F%98"><span class="toc-number">1.0.3.</span> <span class="toc-text">TypeScript中的协变</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TypeScript%E4%B8%AD%E7%9A%84%E6%B3%9B%E5%9E%8B%E9%80%86%E5%8F%98%E5%92%8C%E5%8D%8F%E5%8F%98"><span class="toc-number">1.0.4.</span> <span class="toc-text">TypeScript中的泛型逆变和协变</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.0.5.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/%E9%A2%84%E7%BC%96%E8%AF%91%E4%B8%8E%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/" title="预编译与变量提升">预编译与变量提升</a><time datetime="2022-07-15T12:48:19.000Z" title="发表于 2022-07-15 20:48:19">2022-07-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/Surrogate-Pair/" title="Surrogate Pair">Surrogate Pair</a><time datetime="2022-06-28T06:40:01.000Z" title="发表于 2022-06-28 14:40:01">2022-06-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/Type-string-is-not-assignable-to-type-in-TypeScript/" title="Type 'string' is not assignable to type in TypeScript">Type 'string' is not assignable to type in TypeScript</a><time datetime="2022-06-23T09:50:28.000Z" title="发表于 2022-06-23 17:50:28">2022-06-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/Typescript%E4%B8%AD%E7%9A%84%E9%80%86%E5%8F%98%E4%B8%8E%E5%8D%8F%E5%8F%98/" title="Typescript中的逆变与协变">Typescript中的逆变与协变</a><time datetime="2022-04-16T12:48:19.000Z" title="发表于 2022-04-16 20:48:19">2022-04-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/Proxy/" title="Proxy">Proxy</a><time datetime="2022-02-16T07:23:41.000Z" title="发表于 2022-02-16 15:23:41">2022-02-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By fanttasy</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/blog/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
