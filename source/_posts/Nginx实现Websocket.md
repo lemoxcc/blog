@@ -1,7 +1,7 @@
 ---
 title: Nginx实现Websocket
-date: 2021-02-16 15:23:41
-update: 2021-6-24 15:47:34
+date: 2020-10-16 15:23:41
+update: 2020-10-24 15:47:34
 tags:
   - Nginx
   - Websocket
