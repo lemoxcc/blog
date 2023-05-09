@@ -11,7 +11,6 @@ tags:
   - generator
 categories:
   - JavaScript
-  - typescript
 description: 'JavaScript异步编程'
 keywords: 'JavaScript,typescript,ES6,Promise,await,异步编程'
 top_img: /assert/index-image.png

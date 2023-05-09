@@ -7,9 +7,7 @@ tags:
   - JavaScript
   - Unicode
 categories:
-  - Typescript
   - JavaScript
-  - Unicode
 description: 'JavaScript中的Surrogate Pair'
 keywords: 'Typescript,JavaScript,Surrogate Pair'
 top_img: /assert/index-image.png

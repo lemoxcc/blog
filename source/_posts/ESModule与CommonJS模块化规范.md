@@ -5,9 +5,9 @@ update: 2020-12-12 18:27:36
 tags:
   - JavaScript
   - Typescript
+  - 模块化
 categories:
   - JavaScript
-  - Typescript
 description: 'ESModule与CommonJS模块化规范'
 keywords: 'ESModule,CommonJS,Module,JavaScript,Typescript'
 top_img: /assert/index-image.png
