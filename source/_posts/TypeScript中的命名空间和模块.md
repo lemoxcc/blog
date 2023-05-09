@@ -7,7 +7,6 @@ tags:
   - Typescript
 categories:
   - JavaScript
-  - Typescript
 description: 'TypeScript中的命名空间和模块'
 keywords: 'namespace,Module,Typescript'
 top_img: /assert/index-image.png

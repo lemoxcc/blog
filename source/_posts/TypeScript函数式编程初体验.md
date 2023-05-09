@@ -6,7 +6,6 @@ tags:
   - JavaScript
   - Typescript
 categories:
-  - JavaScript
   - Typescript
 description: 'TypeScript函数式编程初体验'
 keywords: 'JavaScript,Typescript'
